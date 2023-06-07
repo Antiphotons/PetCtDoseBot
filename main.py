@@ -369,12 +369,13 @@ def set_dlp(message):
     if not is_float(new_dlp):
         msg = bot.reply_to(message, 'DLP должен быть числом. Введите DLP:')
         bot.register_next_step_handler(msg, set_dlp)
-    ct["dlp"] = round(float(new_dlp), 2)
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    markup.add('КТ-скан', 'Фантом', 'DLP', 'Анатомические зоны', 'Назад')
-    msg = bot.reply_to(message, f'Установлен DLP {ct["dlp"]}', \
-    reply_markup=markup)
-    bot.register_next_step_handler(msg, ct_select)
+    else:
+        ct["dlp"] = round(float(new_dlp), 2)
+        markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+        markup.add('КТ-скан', 'Фантом', 'DLP', 'Анатомические зоны', 'Назад')
+        msg = bot.reply_to(message, f'Установлен DLP {ct["dlp"]}', \
+        reply_markup=markup)
+        bot.register_next_step_handler(msg, ct_select)
 
 
 # Set Head or Whole body zones or display detalized variants
@@ -559,13 +560,14 @@ def set_activity_full(message):
         msg = bot.reply_to(message, \
         'Активность должна быть числом. Введите активность:')
         bot.register_next_step_handler(msg, set_activity_full)
-    pet["activity_full"] = round(float(new_act), 2)
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    markup.add('ПЭТ-скан', 'РФП', 'Активность', 'Время измерения', 'Назад')
-    msg = bot.reply_to(message, \
-    f'Установлена активность в полном шприце {pet["activity_full"]} {activity_units}', \
-    reply_markup=markup)
-    bot.register_next_step_handler(msg, pet_select)
+    else:
+        pet["activity_full"] = round(float(new_act), 2)
+        markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+        markup.add('ПЭТ-скан', 'РФП', 'Активность', 'Время измерения', 'Назад')
+        msg = bot.reply_to(message, \
+        f'Установлена активность в полном шприце {pet["activity_full"]} {activity_units}', \
+        reply_markup=markup)
+        bot.register_next_step_handler(msg, pet_select)
 
 
 # Empty suringe activity change and message display
@@ -576,13 +578,14 @@ def set_activity_empty(message):
         msg = bot.reply_to(message, \
         'Активность должна быть числом. Введите активность:')
         bot.register_next_step_handler(msg, set_activity_empty)
-    pet["activity_empty"] = round(float(new_act), 2)
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    markup.add('ПЭТ-скан', 'РФП', 'Активность', 'Время измерения', 'Назад')
-    msg = bot.reply_to(message, \
-    f'Установлена активность в пустом шприце {pet["activity_empty"]} {activity_units}', \
-    reply_markup=markup)
-    bot.register_next_step_handler(msg, pet_select)
+    else:
+        pet["activity_empty"] = round(float(new_act), 2)
+        markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+        markup.add('ПЭТ-скан', 'РФП', 'Активность', 'Время измерения', 'Назад')
+        msg = bot.reply_to(message, \
+        f'Установлена активность в пустом шприце {pet["activity_empty"]} {activity_units}', \
+        reply_markup=markup)
+        bot.register_next_step_handler(msg, pet_select)
 
 
 # Select the time of measurement type
